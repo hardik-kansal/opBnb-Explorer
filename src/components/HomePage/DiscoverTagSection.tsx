@@ -51,10 +51,23 @@ export const DiscoverTagSection = ({ tags }: { tags: IChainTags[] }) => {
     <Stack>
       <HStack justify="space-between">
         <HStack>
-          <Heading size="md" color={"black"}>Discover Tags</Heading>
+          <Heading size="md">Discover Tags</Heading>
           <InfoTooltip msg="Discover related contracts by our tags" />
         </HStack>
         <Menu closeOnSelect={false}>
+          <MenuButton
+            as={Button}
+            rightIcon={<Icon as={LuChevronDown} />}
+            size="sm"
+          >
+            {selected.length === 0
+              ? "None"
+              : selected.length === 1
+              ? getChain(Number(selected[0]))?.name
+              : selected.length === chains.length
+              ? "All Chains"
+              : "Multiple Chains"}
+          </MenuButton>
           <MenuList>
             <MenuOptionGroup
               type="checkbox"
